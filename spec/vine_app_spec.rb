@@ -6,14 +6,14 @@ describe VineApp do
   end
 
   it 'should have a version number' do
-    VineApp::VERSION.should_not be_nil
+    expect(VineApp::VERSION).to_not be_nil
   end
 
   it 'Should take an id string, or a full url' do
     vine1 = VineApp.get('bgD2rJXvOi1')
     vine2 = VineApp.get('https://vine.co/v/bgD2rJXvOi1')
     vine2 = VineApp.get('https://vine.co/v/bgD2rJXvOi1/embed')
-    a_request(:get, 'https://vine.co/v/bgD2rJXvOi1').should have_been_made.times(3)
+    expect(a_request(:get, 'https://vine.co/v/bgD2rJXvOi1')).to have_been_made.times(3)
     expect( vine1.video ).to eq( vine2.video )
   end
 
